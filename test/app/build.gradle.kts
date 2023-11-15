@@ -3,13 +3,13 @@ plugins {
 }
 
 android {
-    namespace = "Groupe3.myvegetable"
+    namespace = "MyVegetable.Test"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "Groupe3.myvegetable"
-        minSdk = 28
-        targetSdk = 33
+        applicationId = "MyVegetable.Test"
+        minSdk = 34
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -26,9 +26,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-    buildFeatures {
-        viewBinding=true
-    }
 }
 
 dependencies {
@@ -39,8 +36,4 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    implementation("com.squareup.okhttp3:okhttp:+")
-    //Parsing JSON
-    implementation("com.google.code.gson:gson:2.3")
-    implementation("com.squareup.picasso:picasso:2.8")
 }

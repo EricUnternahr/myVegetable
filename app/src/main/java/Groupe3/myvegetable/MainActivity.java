@@ -1,52 +1,44 @@
 package Groupe3.myvegetable;
 
-import androidx.appcompat.app.AppCompatActivity;
+import static Groupe3.myvegetable.RequestUtils.loadProduit;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
+import Groupe3.myvegetable.adapter.ProduitAdapter;
+import Groupe3.myvegetable.beans.ProduitBean;
 
 public class MainActivity extends AppCompatActivity {
+    private RecyclerView recyclerView;
+    private ProduitAdapter produitAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.row_produit);
+        setContentView(R.layout.activity_main);
 
-        // Étape 2 : Préparer les données
-        List<String> numbers = new ArrayList<>();
-        for (int i = 1; i <= 100; i++) {
-            numbers.add(String.valueOf(i));
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        produitAdapter = new ProduitAdapter();
+        recyclerView.setAdapter(produitAdapter);
+
+        List<ProduitBean> produits = null;
+        try {
+            produits = loadProduit();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
+        produitAdapter.submitList(loadProduit());
+    }
 
-        // Étape 3 : Créer un ArrayAdapter en utilisant un layout de spinner simple et la liste des nombres
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, numbers);
+    private List<ProduitBean> loadProduit() {
+        List<ProduitBean> produits = new ArrayList<>();
 
-        // Spécifier le layout à utiliser lorsque la liste des choix apparaît
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        // Étape 4 : Appliquer l'adaptateur au spinner
-        Spinner spinner = findViewById(R.id.spinquantite);
-        spinner.setAdapter(adapter);
-
-        // Étape 5 : Définir un écouteur pour le spinner
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                // Un élément a été sélectionné, vous pouvez le traiter ici
-                String selectedItem = parent.getItemAtPosition(position).toString();
-                // Traiter la sélection
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // Aucune action requise ici
-            }
-        });
+        return produits;
     }
 }

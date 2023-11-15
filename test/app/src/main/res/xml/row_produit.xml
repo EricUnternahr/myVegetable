@@ -88,14 +88,6 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1" />
 
-                        <TextView
-                            android:id="@+id/tvprix"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center|center_horizontal"
-                            android:text="Prix" />
-
                         <Button
                             android:id="@+id/btpanier"
                             android:layout_width="wrap_content"
