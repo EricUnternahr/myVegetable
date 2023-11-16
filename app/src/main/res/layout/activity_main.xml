@@ -17,19 +17,38 @@
             android:id="@+id/ivproduit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0"
+            android:layout_weight="1"
             android:src="@drawable/image_background" />
 
         <Button
-            android:id="@+id/BtPanier"
+            android:id="@+id/btPanier"
             android:layout_width="127dp"
             android:layout_height="64dp"
             android:layout_alignParentRight="true"
             android:layout_gravity="center"
             android:layout_marginLeft="130dp"
-            android:layout_weight="0"
-            android:text="Panier" />
+            android:layout_weight="1"
+            android:text="Enregistrer commande" />
+
     </LinearLayout>
+
+    <EditText
+        android:id="@+id/etNom"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_weight="0"
+        android:ems="10"
+        android:hint="Nom"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/etTelephone"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_weight="0"
+        android:ems="10"
+        android:hint="Numero de telephone"
+        android:inputType="number" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

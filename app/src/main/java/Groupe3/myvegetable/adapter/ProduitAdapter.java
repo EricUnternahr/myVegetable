@@ -11,9 +11,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
+import android.util.Log;
 
 import com.squareup.picasso.Picasso;
 
+import Groupe3.myvegetable.Data;
+import Groupe3.myvegetable.beans.ListeProduitBean;
 import Groupe3.myvegetable.beans.ProduitBean;
 import Groupe3.myvegetable.databinding.RowProduitBinding;
 
@@ -49,32 +52,60 @@ public class ProduitAdapter extends ListAdapter<ProduitBean, ProduitAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ProduitBean item = getItem(position);
         holder.bind(item);
+        holder.binding.btajouter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.addToCart();
+            }
+        });
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         private final RowProduitBinding binding;
+        private int currentProductId;
 
         ViewHolder(RowProduitBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
-            // Initialisation du Spinner
             initializeSpinner();
+            binding.btajouter.setOnClickListener(v -> addToCart());
         }
 
         void bind(ProduitBean item) {
+            currentProductId = item.getIdProduit(); // Stocker l'ID du produit actuel
             binding.tvnomProduit.setText(item.getNomProduit());
             binding.tvdesignation.setText(item.getDescriptionProduit());
             binding.tvprix.setText(String.format("%.2f €", item.getPrixProduit()));
             Picasso.get()
                     .load(item.getImageProduit())
                     .into(binding.ivproduit);
+        }
 
+        private void addToCart() {
+            int quantity = Integer.parseInt(binding.spinquantite.getSelectedItem().toString());
+
+            ListeProduitBean existingProduct = findProductInList(currentProductId);
+            if (existingProduct != null) {
+                existingProduct.setQuantite_produit(existingProduct.getQuantite_produit() );
+            } else {
+                ListeProduitBean newProduct = new ListeProduitBean(currentProductId, quantity);
+                Data.listeProduit.add(newProduct);
+            }
+        }
+
+        private ListeProduitBean findProductInList(int productId) {
+            for (ListeProduitBean product : Data.listeProduit) {
+                if (product.getIdProduit() == productId) {
+                    return product;
+                }
+            }
+            return null;
         }
 
         private void initializeSpinner() {
             Spinner spinner = binding.spinquantite;
             List<String> numbers = new ArrayList<>();
-            for (int i = 1; i <= 100; i++) {
+            for (int i = 0; i <= 100; i++) {
                 numbers.add(String.valueOf(i));
             }
             ArrayAdapter<String> adapter = new ArrayAdapter<>(spinner.getContext(), android.R.layout.simple_spinner_item, numbers);
