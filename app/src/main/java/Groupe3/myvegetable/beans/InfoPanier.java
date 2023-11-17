@@ -1,4 +1,4 @@
-package Groupe3.myvegetable;
+package Groupe3.myvegetable.beans;
 
 import java.util.List;
 

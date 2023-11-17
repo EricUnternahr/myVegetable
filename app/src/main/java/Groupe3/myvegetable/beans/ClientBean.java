@@ -1,14 +1,22 @@
 package Groupe3.myvegetable.beans;
 
 public class ClientBean {
-    private String telephone;
     private String nom;
+    private String telephone;
+
+    public ClientBean(String nom, String telephone) {
+        this.nom = nom;
+        this.telephone = telephone;
+    }
 
     public ClientBean() {
     }
 
-    public ClientBean(String telephone, String nom) {
-        this.telephone = telephone;
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
         this.nom = nom;
     }
 
@@ -18,13 +26,5 @@ public class ClientBean {
 
     public void setTelephone(String telephone) {
         this.telephone = telephone;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
     }
 }
