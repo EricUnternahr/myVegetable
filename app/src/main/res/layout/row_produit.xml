@@ -48,6 +48,7 @@
                     android:layout_width="80dp"
                     android:layout_height="150dp"
                     android:layout_weight="0"
+                    android:padding="5dp"
                     app:srcCompat="@drawable/ic_launcher_foreground" />
 
                 <LinearLayout
@@ -69,6 +70,7 @@
                             android:layout_height="110dp"
                             android:layout_weight="1"
                             android:gravity="center"
+                            android:padding="10dp"
                             android:textColor="@color/black"
                             android:textSize="14sp"
                             android:textStyle="bold"

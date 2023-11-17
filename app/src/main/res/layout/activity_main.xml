@@ -15,20 +15,23 @@
 
         <ImageView
             android:id="@+id/ivproduit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:src="@drawable/image_background" />
+            android:src="@drawable/logo" />
 
         <Button
             android:id="@+id/btPanier"
-            android:layout_width="127dp"
-            android:layout_height="64dp"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
             android:layout_alignParentRight="true"
             android:layout_gravity="center"
-            android:layout_marginLeft="130dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="15dp"
             android:layout_weight="1"
-            android:text="Enregistrer commande" />
+            android:text="Enregistrer commande"
+            />
 
     </LinearLayout>
 
